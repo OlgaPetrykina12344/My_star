@@ -1,0 +1,29 @@
+from aiogram import Bot, Dispatcher, executor, types
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+
+API_TOKEN='5917373053:AAE9LioKDVLKAAcX54GS-aYFJKfpmygK6Hs'
+
+bot = Bot(token=API_TOKEN)
+Bot = Dispatcher(bot)
+
+
+urlkb = InlineKeyboardMarkup(row_width=1)
+kb_number_1 = InlineKeyboardButton(text='Русский язык', url='https://i.ytimg.com/vi/BmA0lm4iXpc/hqdefault.jpg')
+kb_number_2 = InlineKeyboardButton(text='Математика', url='https://yandex.ru/images/search?text=%D0%BD%D0%B0%20%D0%B0%D0%B2%D0%B5%20%D0%BF%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D1%8C%20%D0%B2%20%D0%BA%D0%B0%D1%80%D0%BC%D0%B0%D0%BD%D0%B5%20%D0%B5%D0%B3%D1%8D&lr=10713&pos=0&img_url=http%3A%2F%2Fmeme-arsenal.com%2Fmemes%2F4495093434304e60097f2303f6b773e0.jpg&rpt=simage')
+kb_number_3= InlineKeyboardButton(text='Информатика', url='https://yandex.ru/images/search?text=%D0%BD%D0%B0%20%D0%B0%D0%B2%D0%B5%20byajhvfnbrf%20%D0%B2%20%D0%BA%D0%B0%D1%80%D0%BC%D0%B0%D0%BD%D0%B5%20%D0%B5%D0%B3%D1%8D&lr=10713&pos=1&img_url=http%3A%2F%2Fsun9-58.userapi.com%2Fs%2Fv1%2Fig2%2FEHAgkbRl4DLgH4PVW5KWcsYYBL3s9N3fzXe-TqMFhidhX6XMgTq6eX94Iket3y5cDpoNOOMzuLO9xNfOwohjOM5O.jpg%3Fsize%3D400x400%26quality%3D96%26crop%3D76%2C0%2C568%2C568%26ava%3D1&rpt=simage')
+kb_number_4=InlineKeyboardButton(text='Химия', url='https://yandex.ru/images/search?text=%D0%BD%D0%B0%20%D0%B0%D0%B2%D0%B5%20byajhvfnbrf%20%D0%B2%20%D0%BA%D0%B0%D1%80%D0%BC%D0%B0%D0%BD%D0%B5%20%D0%B5%D0%B3%D1%8D&lr=10713&pos=0&img_url=http%3A%2F%2Fsun9-88.userapi.com%2Fimpg%2FunPfAsinOupqNpLLFq-NZB657OZJQ70DLgR--g%2FKKE31By5ZIE.jpg%3Fsize%3D1074x1303%26quality%3D95%26sign%3Daeaca113aed512563af58bcbcbbd1c03%26c_uniq_tag%3DfUTblsxLwJEnU9oCIgeKS4x8NLEB2pX8z5vASq2SlHU%26type%3Dalbum&rpt=simage')
+kb_number_5=InlineKeyboardButton(text='Физика', url='https://yandex.ru/images/search?text=%D0%BD%D0%B0%20%D0%B0%D0%B2%D0%B5%20%D1%84%D0%B8%D0%B7%D0%B8%D0%BA%D0%B0%20%D0%B2%20%D0%BA%D0%B0%D1%80%D0%BC%D0%B0%D0%BD%D0%B5&lr=10713&pos=2&img_url=http%3A%2F%2Fsun9-87.userapi.com%2Fimpf%2Fc851028%2Fv851028339%2F1317e9%2FquEvGtXvAgo.jpg%3Fsize%3D890x1080%26quality%3D96%26sign%3Dcabdb7ca99659b4cb0bed4604e4fae70%26c_uniq_tag%3D1vChXBgoQ0AViWTC6iBkV7y3e_aOiOErug7KnBLV-KA%26type%3Dalbum&rpt=simage')
+kb_number_6=InlineKeyboardButton(text='Биология', url='https://yandex.ru/images/search?text=%D0%BD%D0%B0%20%D0%B0%D0%B2%D0%B5%20%D0%B1%D0%B8%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%20%D0%B2%20%D0%BA%D0%B0%D1%80%D0%BC%D0%B0%D0%BD%D0%B5%20%D0%B5%D0%B3%D1%8D&lr=10713&pos=1&img_url=http%3A%2F%2Fsun9-west.userapi.com%2Fsun9-6%2Fs%2Fv1%2Fif1%2FvbE7Pz1VlwhRunSpm1GjbdBB6IGRp5GTFYNa70LbfcgYFeIs2paQVLUknmsRmZzLIa5GkNZr.jpg%3Fsize%3D792x960%26quality%3D96%26type%3Dalbum&rpt=simage')
+urlkb.add(kb_number_1,kb_number_2,kb_number_3,kb_number_4,kb_number_5,kb_number_6)
+
+@Bot.message_handler(commands=['start'])
+async def send_welcome(message: types.Message):
+   await message.reply("Привет!\nМеня зовут Катрина\nЯ чат бот, который поможет сдать тебе ЕГЭ на сотку\nВыбери его ниже", reply_markup=urlkb)
+   
+@Bot.message_handler()
+async def echo(message: types.Message):
+   await message.answer(message.text)
+
+
+if __name__ == '__main__':
+   executor.start_polling(Bot, skip_updates=True)
